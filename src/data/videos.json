@@ -1,0 +1,50 @@
+[
+    {
+        "resourceTitle": "CrytoParty 2023 (Quito - Ecuador)",
+        "imageSrc": "https://autonomia.digital/images/article-cryptoparty-oct-2023/banner.png",
+        "resourceLink": "https://www.youtube.com/watch?v=2aiW6AEDuhI",
+        "date": "13 de noviembre del 2023"
+    },
+    {
+        "resourceTitle": "Mentes en el Campus: Diálogos sobre salud mental",
+        "imageSrc": "https://ieu.edu.mx/wp-content/uploads/2020/12/4-podcasts-de-psicologia-para_cuidar_tu_mente.jpg",
+        "resourceLink": "https://drive.google.com/file/d/16UdTE6cUns98RfFVzhKFDyYEQUpDD7wb/view?usp=sharing",
+        "date": "14 de octubre del 2023"
+    },
+    {
+        "resourceTitle": "Demo - Sistema de Planificación Académica de la FIS",
+        "imageSrc": "https://www.epn.edu.ec/wp-content/uploads/2010/09/DSC00179-680x382.jpg",
+        "resourceLink": "https://youtu.be/QCW5FZ1Ud6s",
+        "date": "03 de marzo del 2023"
+    },
+    {
+        "resourceTitle": "Promo - Regreso a la presencialidad - AEIS 2021",
+        "imageSrc": "https://www.sonda.com/images/default-source/noticias/nota-2.png?sfvrsn=514c4194_3",
+        "resourceLink": "https://www.facebook.com/AEIS.FIS.EPN/videos/491509052723580",
+        "date": "02 de mayo de 2022"
+    },
+    {
+        "resourceTitle": " Cobra - Curso de Golang (Club de Software EPN)",
+        "imageSrc": "https://www.johnarroyo.com/images/posts/2020/cobrakai-screenshot.png",
+        "resourceLink": "https://youtu.be/JWV6j46PcT4",
+        "date": "02 de diciembre del 2020"
+    },
+    {
+        "resourceTitle": "Ataques XSS - JS Workshop - Club de Software EPN",
+        "imageSrc": "https://cdn-nv.mo.cloudinary.net/media/uploads/2022/02/que-es-xss.jpg",
+        "resourceLink": "https://www.youtube.com/watch?v=xeayzJwBJ5E",
+        "date": "22 de agosto del 2021"
+    },
+    {
+        "resourceTitle": "Qué carrera seguir - FIS - Club de Software EPN ",
+        "imageSrc": "https://ing-sistemas.com/wp-content/uploads/2017/02/LineaInnova_950px_SistInf.jpg",
+        "resourceLink": "https://www.facebook.com/watch/live/?ref=watch_permalink&v=227953496051408",
+        "date": "28 de septiembre del 2021"
+    },
+    {
+        "resourceTitle": "Vaivén - Mi primer cortometraje ",
+        "imageSrc": "https://www.escueladesarts.com/wp-content/uploads/cortometraje.jpg",
+        "resourceLink": "https://www.youtube.com/watch?v=6Jf6KYqPX4A",
+        "date": "18 de julio del 2016"
+    }
+]

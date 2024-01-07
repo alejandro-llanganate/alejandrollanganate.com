@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Banner from "../components/Banner.astro";
+import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
+import Others from "../components/Others.astro";
+---
+
+<Layout title="Otros">
+    <main>
+        <div class="container">
+            <Others />
+        </div>
+    </main>
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</Layout>

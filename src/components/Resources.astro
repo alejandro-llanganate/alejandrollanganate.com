@@ -1,0 +1,58 @@
+---
+import ResourceCard from "./ResourceCard.astro";
+import data from "./../data/resources.json";
+---
+
+<div class="resources-container">
+    {
+        data.map((item) => (
+            <ResourceCard
+                resourceTitle={item.resourceTitle}
+                imageSrc={item.imageSrc}
+                resourceDescription={item.resourceDescription}
+                resourceLink={item.resourceLink}
+                date={item.date}
+            />
+        ))
+    }
+</div>
+
+<style>
+    .resources-container {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 2rem;
+        background-color: white;
+        width: 70%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgb(237, 237, 237);
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 1024px) {
+        .resources-container {
+            width: 85%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .resources-container {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .resources-container {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 469px) {
+        .resources-container {
+            width: 90%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+</style>

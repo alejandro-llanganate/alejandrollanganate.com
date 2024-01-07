@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Banner from "../components/Banner.astro";
+import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
+import VideosList from "../components/Videos.astro";
+---
+
+<Layout title="Vídeos">
+    <main>
+        <div class="videos-container">
+            <VideosList />
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .videos-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
