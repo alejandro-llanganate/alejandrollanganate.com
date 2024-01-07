@@ -1,7 +1,6 @@
 ---
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
-console.log("currentPath", currentPath);
 ---
 
 <!-- Font Awesome -->
@@ -18,13 +17,13 @@ console.log("currentPath", currentPath);
                 <span class="nav-label"> Recursos</span></a
             >
         </li>
-        <li class={currentPath === "videos" ? "active" : ""}>
+        <li class={currentPath === "videos/" ? "active" : ""}>
             <a href="/videos/">
                 <span><i class="fas fa-video"></i></span>
                 <span class="nav-label"> Videos</span>
             </a>
         </li>
-        <li class={currentPath === "otros" ? "active" : ""}>
+        <li class={currentPath === "otros/" ? "active" : ""}>
             <a href="/otros/">
                 <span><i class="fas fa-ellipsis-h"></i></span>
                 <span class="nav-label"> Otros</span>
