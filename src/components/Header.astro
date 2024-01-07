@@ -1,3 +1,7 @@
+---
+import ProfileImage from "./../../public/profile.jpeg";
+---
+
 <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -6,7 +10,7 @@
 <header>
     <div class="image-profile-container">
         <div class="image-profile">
-            <img src="./../../public/profile.jpeg" alt="Profile Image" />
+            <img src={ProfileImage.src} alt="Profile Image" />
         </div>
     </div>
     <div class="profile-info">
