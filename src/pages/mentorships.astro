@@ -1,0 +1,384 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import PricingCard from "@components/pricing.astro";
+
+const pricing = [
+  {
+    name: "Situación vulnerable",
+    price: "Gratis",
+    popular: false,
+    features: [
+      "Sin recursos para pagar una mentoría",
+      "Desempleados por más de un año",
+      "Mentorías limitadas a 4 horas mensuales",
+      "Personas con alguna discapacidad",
+      "Que hayan sufrido violencia física",
+      "Que tengan algún problema de depresión",
+    ],
+    button: {
+      text: "Agenda ya una cita",
+      link: "/contact",
+    },
+  },
+  {
+    name: "Profesionales o estudiantes",
+    price: "Personalizado",
+    popular: false,
+    features: [
+      "Según el número de horas y días",
+      "Según el tema de la mentoría",
+      "Prioridad y disponibilidad completa",
+      "Apoyo continuo en sus objetivos",
+      "Seguimiento de resultados",
+      "Chat activo para soporte",
+    ],
+    button: {
+      text: "Agenda ya una cita",
+      link: "/contact",
+    },
+  },
+];
+---
+
+<Layout title="Pricing">
+  <div class="portada-container">
+    <img
+      src="https://i.ibb.co/QDK6thr/portada-mentorias.jpg"
+      alt="Portada"
+      class="portada"
+    />
+  </div>
+
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Preguntas frecuentes</Fragment>
+      <Fragment slot="desc">
+        Algunas preguntas frecuentes sobre las mentorías
+      </Fragment>
+    </Sectionhead>
+    <div class="faq-list space-y-4 mt-10">
+      <div class="faq-item border-b border-gray-200 pb-4">
+        <button
+          class="faq-question w-full flex items-center justify-between text-left text-lg font-semibold text-gray-800 focus:outline-none"
+          onclick="toggleFaq(this)">
+          <span>1. ¿Qué es una mentoría?</span>
+          <i class="fas fa-chevron-down text-gray-500"></i>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 hidden">
+          Una mentoría profesional es una guía personalizada en la que un
+          mentor, con experiencia y conocimiento en un área específica, apoya a
+          un mentee (aprendiz) en su desarrollo profesional. Su objetivo es
+          brindar orientación, compartir conocimientos prácticos, resolver dudas
+          y ayudar a alcanzar metas profesionales de manera más efectiva. 🌟
+        </div>
+      </div>
+      <div class="faq-item border-b border-gray-200 pb-4">
+        <button
+          class="faq-question w-full flex items-center justify-between text-left text-lg font-semibold text-gray-800 focus:outline-none"
+          onclick="toggleFaq(this)">
+          <span>2. ¿En qué se diferencia de un curso?</span>
+          <i class="fas fa-chevron-down text-gray-500"></i>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 hidden">
+          La principal diferencia entre una mentoría profesional y un curso
+          radica en la personalización y el enfoque práctico. <br />
+          <br /> 🧑‍🏫 <strong>Mentoría:</strong>
+          Es personalizada, adaptada a las necesidades y objetivos específicos del
+          mentee, con un enfoque directo en sus desafíos. Implica interacción constante,
+          asesoramiento y guía estratégica basada en la experiencia del mentor.
+          <br />
+          <strong>🗣️🤝 Curso:</strong> Sigue un temario preestablecido, diseñado
+          para un público general. Proporciona conocimientos teóricos o prácticos
+          en un formato más estructurado y menos interactivo, sin adaptarse individualmente
+          a los participantes. <br />
+          <br />📚🎓 Ambos son útiles, pero se eligen según las necesidades del
+          aprendizaje. 🌟
+        </div>
+      </div>
+      <div class="faq-item border-b border-gray-200 pb-4">
+        <button
+          class="faq-question w-full flex items-center justify-between text-left text-lg font-semibold text-gray-800 focus:outline-none"
+          onclick="toggleFaq(this)">
+          <span>3. ¿Qué temas puedo recibir en las mentorías?</span>
+          <i class="fas fa-chevron-down text-gray-500"></i>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 hidden">
+          <ul>
+            <li>- Construcción de aplicaciones web y móviles.</li>
+            <li>- Temas técnicos para trabajos de titulación.</li>
+            <li>
+              - Asesoramiento sobre vida profesional: búsqueda de empleo y
+              networking profesional.
+            </li>
+            <li>- Especialización en seguridad informática.</li>
+            <li>- Guía en la implementación de microservicios.</li>
+            <li>
+              - Creación de videojuegos (únicamente para niños u adolescentes)
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-item border-b border-gray-200 pb-4">
+        <button
+          class="faq-question w-full flex items-center justify-between text-left text-lg font-semibold text-gray-800 focus:outline-none"
+          onclick="toggleFaq(this)">
+          <span>4. ¿En qué forma se da?</span>
+          <i class="fas fa-chevron-down text-gray-500"></i>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 hidden">
+          Las mentorías se imparten de manera virtual, excepto aquellas
+          dirigidas a niños, que se realizan de forma presencial. La plataforma
+          preferida para las sesiones virtuales es Google Meet. 🌐✨
+        </div>
+      </div>
+      <div class="faq-item border-b border-gray-200 pb-4">
+        <button
+          class="faq-question w-full flex items-center justify-between text-left text-lg font-semibold text-gray-800 focus:outline-none"
+          onclick="toggleFaq(this)">
+          <span>5. ¿En qué horarios?</span>
+          <i class="fas fa-chevron-down text-gray-500"></i>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 hidden">
+          Los horarios se coordinan previamente con la persona interesada. 🕒
+          <br />
+          <br /> Las sesiones se realizan fuera del horario laboral de lunes a viernes,
+          preferiblemente por la noche 🌙 o durante el fin de semana. 🏖️ <br />
+          <br /> Las mentorías pueden ser grupales 👥 o individuales 🧑‍💻, según tu
+          preferencia. 💡✨
+        </div>
+      </div>
+      <div class="faq-item border-b border-gray-200 pb-4">
+        <button
+          class="faq-question w-full flex items-center justify-between text-left text-lg font-semibold text-gray-800 focus:outline-none"
+          onclick="toggleFaq(this)">
+          <span>6. ¿Cómo se agenda una mentoría?</span>
+          <i class="fas fa-chevron-down text-gray-500"></i>
+        </button>
+        <div class="faq-answer mt-2 text-gray-600 hidden">
+          Al final de esta sección, puedes programar una reunión inicial para
+          establecer tu mentoría. 📆🤝 Esta primera reunión será clave para
+          conocer tus necesidades, coordinar detalles como el horario y discutir
+          el costo. <br />
+          <br /> 💡💬 ¡Estoy aquí para ayudarte a crecer y alcanzar tus metas! 🚀🌟
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Reseñas</Fragment>
+      <Fragment slot="desc">
+        Grandes cambios con excelentes estudiantes
+      </Fragment>
+    </Sectionhead>
+    <div class="reviews-container">
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://i.ibb.co/kmg672n/ariel.jpg" alt="Reviewer 1" />
+          <div class="review-text">
+            <h3>Ariel Rosero</h3>
+            <p class="role">Desarrollador graduado de Ing. de Software</p>
+          </div>
+        </div>
+        <p style="font-size: 1.2em; font-style: italic; quotes: '“' '”'">
+          Con Alejandro aprendí buenas prácticas de implementación, respaldadas
+          por su amplio conocimiento y referencias claras a libros. Estoy feliz
+          de haber aprendido Angular con él y completado mi TIC.
+        </p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://i.ibb.co/wR5r1fL/karen.jpg" alt="Reviewer 2" />
+          <div class="review-text">
+            <h3>Karen Morocho</h3>
+            <p class="role">Ingeniera de Sistemas en Banco Pichincha</p>
+          </div>
+        </div>
+        <p style="font-size: 1.2em; font-style: italic; quotes: '“' '”'">
+          Alejandro, además de ser un excelente profesional, es una persona
+          extraordinaria. Con él, aprendí las bases de los procesos en Bizagi,
+          recibí consejos útiles y, sobre todo, mucha motivación.
+        </p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <img src="https://i.ibb.co/bFMhgMM/stefy.jpg" alt="Reviewer 3" />
+          <div class="review-text">
+            <h3>Estefania Segovia</h3>
+            <p class="role">Mamá de Martín (alumno genio de 12 años)</p>
+          </div>
+        </div>
+        <p style="font-size: 1.2em; font-style: italic; quotes: '“' '”'">
+          Gracias a Alejandro, Martín ha potenciado sus habilidades mediante
+          juegos, transformando su percepción de la educación y encontrando una
+          gran motivación.
+        </p>
+      </div>
+    </div>
+
+    <div class="mentorship-title mt-12">
+      Personas que actualmente han podido tener una mentoría conmigo.
+    </div>
+
+    <div class="mentorship-images">
+      <img src="https://i.ibb.co/kmg672n/ariel.jpg" alt="Mentee 1" />
+      <img src="https://i.ibb.co/wR5r1fL/karen.jpg" alt="Mentee 2" />
+      <img src="https://i.ibb.co/M6rY2wN/m4.jpg" alt="Mentee 3" />
+      <img src="https://i.ibb.co/S0LRcVN/m7.jpg" alt="Mentee 4" />
+      <img src="https://i.ibb.co/hdQcnpw/m8.jpg" alt="Mentee 5" />
+      <img src="https://i.ibb.co/bLdckBW/m9.jpg" alt="Mentee 5" />
+      <img src="https://i.ibb.co/hCvjYtk/m6.jpg" alt="Mentee 5" />
+    </div>
+  </Container>
+
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Precio</Fragment>
+      <Fragment slot="desc">
+        Precios flexibles para cualquier profesional o estudiante</Fragment
+      >
+    </Sectionhead>
+
+    <div
+      class="flex justify-between items-center mx-auto max-w-screen-lg mt-12 space-x-4">
+      {pricing.map((item) => <PricingCard plan={item} />)}
+    </div>
+  </Container>
+
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Agenda una cita conmigo</Fragment>
+      <Fragment slot="desc">
+        En esta reunión te daré más información y podremos definir un programa
+        de mentorías o una mentoría
+      </Fragment>
+    </Sectionhead>
+    <div class="calendly">
+      <iframe
+        src="https://calendly.com/alejandro-llanganate/calendar"
+        width="100%"
+        height="600"
+        frameborder="0"></iframe>
+    </div>
+  </Container>
+</Layout>
+
+<script is:inline>
+  function toggleFaq(button) {
+    const answer = button.nextElementSibling;
+    answer.classList.toggle("hidden");
+    const icon = button.querySelector("i");
+    icon.classList.toggle("fa-chevron-down");
+    icon.classList.toggle("fa-chevron-up");
+  }
+</script>
+
+<style>
+  .faq-question {
+    background-color: #f9fafb; /* Light gray background */
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  .faq-question:hover {
+    background-color: #e2e8f0; /* Slightly darker on hover */
+  }
+  .faq-answer {
+    transition: max-height 0.3s ease-out;
+    padding: 8px 16px;
+    background-color: #f1f5f9; /* Light blue-gray background */
+    border-radius: 8px;
+  }
+  .faq-item {
+    border: none; /* Remove default border */
+  }
+  .portada-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  .portada {
+    width: 100%;
+    height: 500px; /* Set height to 500px */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    opacity: 0.8; /* Adjust transparency */
+  }
+  .reviews-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+
+  .review-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .review-header img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px; /* Fixed space between image and text */
+  }
+
+  .review-text {
+    text-align: left;
+  }
+
+  .review-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  .role {
+    font-size: 0.9em;
+    color: #777;
+  }
+
+  .review-card p {
+    font-size: 0.9em;
+    color: #555;
+  }
+
+  .mentorship-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .mentorship-images img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+  }
+
+  .mentorship-title {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+</style>
+
+<!-- Include Font Awesome for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  integrity="sha384-0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e0e3e"
+  crossorigin="anonymous"
+/>
