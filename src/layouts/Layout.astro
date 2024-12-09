@@ -20,7 +20,7 @@ const { title } = Astro.props;
 
 const makeTitle = title
   ? title + " | " + "Alejandro Llanganate"
-  : "Astroship - Starter Template for Astro with Tailwind CSS";
+  : "Alejandro Llanganate";
 ---
 
 <!doctype html>
@@ -57,7 +57,6 @@ const makeTitle = title
   <body>
     <Navbar />
     <slot />
-    <Footer />
     <style is:global>
       /* Improve Page speed */
       /* https://css-tricks.com/almanac/properties/c/content-visibility/ */

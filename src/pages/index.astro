@@ -10,8 +10,27 @@ import Layout from "@layouts/Layout.astro";
 <Layout title="">
   <Container>
     <Hero />
+  </Container>
+  <div class="w-full">
+    <img
+      src="https://i.ibb.co/NWR0KRG/portada.png"
+      alt="Portada"
+      class="w-full h-auto"
+      style="width: 100%; max-width: 100%;"
+    />
+  </div>
+  <Container>
     <Features />
     <Logos />
     <Cta />
   </Container>
 </Layout>
+
+<style>
+  .mt-20 {
+    margin-top: 5rem; /* Aumenta el margen superior */
+  }
+  .mb-16 {
+    margin-bottom: 4rem; /* Aumenta el margen inferior */
+  }
+</style>

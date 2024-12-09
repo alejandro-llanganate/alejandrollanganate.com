@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+
+// Filter team entries with 'draft: false' & date before current date
+const publishedTeamMembers = await getCollection("team", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+});
+---
+
+<Layout title="Alumnis FIS">
+  <head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"
+      defer></script>
+  </head>
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Alumnis FIS</Fragment>
+      <Fragment slot="desc">
+        <p class="text-lg leading-relaxed text-slate-500">
+          Bienvenido a la sección de Alumnis FIS. Aquí puedes visualizar el
+          documento propuesta que busca reunir a los exalumnos de la Facultad de
+          Ingeniería de Sistemas de la Escuela Politécnica Nacional.
+        </p>
+      </Fragment>
+    </Sectionhead>
+
+    <div id="pdf-viewer" class="flex justify-center mt-12 mb-12">
+      <!-- El contenedor donde se cargará el PDF -->
+    </div>
+    <noscript>
+      <p>
+        Este navegador no soporta PDFs en línea. Por favor, descarga el PDF para
+        verlo: <a
+          href="https://d3ey0ivtc68uxj.cloudfront.net/public/a97103153790a0181c3be771639e12ec.pdf"
+          >Descargar PDF</a
+        >
+      </p>
+    </noscript>
+  </Container>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof PDFObject !== "undefined") {
+      var success = PDFObject.embed(
+        "https://d3ey0ivtc68uxj.cloudfront.net/public/a97103153790a0181c3be771639e12ec.pdf",
+        "#pdf-viewer",
+      );
+      if (!success) {
+        document.getElementById("pdf-viewer").innerHTML =
+          '<p>Este navegador no soporta PDFs en línea. Por favor, descarga el PDF para verlo: <a href="https://d3ey0ivtc68uxj.cloudfront.net/public/a97103153790a0181c3be771639e12ec.pdf">Descargar PDF</a></p>';
+      }
+    } else {
+      console.error("PDFObject is not defined");
+    }
+  });
+</script>
+
+<style>
+  #pdf-viewer {
+    width: 100%;
+    height: 600px; /* Ajusta la altura según tus necesidades */
+    border: 1px solid #ccc;
+  }
+</style>
