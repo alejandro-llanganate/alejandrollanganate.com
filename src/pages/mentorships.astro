@@ -184,9 +184,9 @@ const pricing = [
           </div>
         </div>
         <p style="font-size: 1.2em; font-style: italic; quotes: '“' '”'">
-          Con Alejandro aprendí buenas prácticas de desarrllo, respaldadas
-          por su amplio conocimiento y referencias claras a libros. Estoy feliz
-          de haber aprendido Angular con él y haber completado mi TIC.
+          Con Alejandro aprendí buenas prácticas de desarrllo, respaldadas por
+          su amplio conocimiento y referencias claras a libros. Estoy feliz de
+          haber aprendido Angular con él y haber completado mi TIC.
         </p>
       </div>
       <div class="review-card">
@@ -243,7 +243,7 @@ const pricing = [
     </Sectionhead>
 
     <div
-      class="flex justify-between items-center mx-auto max-w-screen-lg mt-12 space-x-4">
+      class="flex flex-wrap justify-between items-center mx-auto max-w-screen-lg mt-12 space-x-4">
       {pricing.map((item) => <PricingCard plan={item} />)}
     </div>
   </Container>
@@ -308,6 +308,7 @@ const pricing = [
   .reviews-container {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     margin: 20px 0;
   }
 
@@ -315,9 +316,10 @@ const pricing = [
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 20px;
-    width: 30%;
+    width: 500px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 20px;
   }
 
   .review-header {
