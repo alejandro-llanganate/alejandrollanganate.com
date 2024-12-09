@@ -28,7 +28,9 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v1
         with:
-          package-manager: pnpm # Especifica que quieres usar pnpm para la instalación
+          package-manager: pnpm # Asegura que use pnpm como gestor de paquetes
+          path: . # Especifica el directorio raíz del proyecto Astro
+          node-version: 18 # Asegura que usa la versión correcta de Node.js
 
   deploy:
     needs: build
