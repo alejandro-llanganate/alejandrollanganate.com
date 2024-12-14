@@ -3,43 +3,94 @@ import { Tick } from "@components/ui/icons";
 import Link from "@components/ui/link.astro";
 
 const { plan } = Astro.props;
+const isChristmas = plan.season === "christmas";
 ---
 
 <div>
   <div
-    class="flex flex-col w-full order-first lg:order-none border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md">
+    class:list={[
+      "relative py-5 px-6 rounded-md m-5",
+      isChristmas
+        ? "border-2 border-red-500 bg-gradient-to-b from-white to-red-50"
+        : "border-2 border-[#D8DEE9] border-opacity-50",
+    ]}>
+    {
+      isChristmas && (
+        <div class="flex flex-col items-center mb-3">
+          <div class="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold inline-block">
+            🎄 Navidad 2024 - Promoción 🎅
+          </div>
+        </div>
+      )
+    }
+    {
+      isChristmas && (
+        <div class="absolute top-0 right-0 -mr-3 -mt-3">
+          <span class="relative flex h-10 w-10">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+            <span class="relative inline-flex rounded-full h-10 w-10 bg-red-500 items-center justify-center text-lg">
+              ⭐
+            </span>
+          </span>
+        </div>
+      )
+    }
     <div class="text-center">
-      <h4 class="text-lg font-medium text-gray-400">{plan.name}</h4><p
-        class="mt-3 text-4xl font-bold text-black md:text-4xl">
+      <h4
+        class:list={[
+          "text-lg font-medium",
+          isChristmas ? "text-red-600 " : "text-gray-400",
+        ]}>
+        {plan.name}
+      </h4>
+      <p class="mt-3 text-4xl font-bold text-black md:text-4xl">
         {
           plan.price && typeof plan.price === "object"
             ? plan.price.monthly
             : plan.price
         }
       </p>
-      <!-- {
-        plan.price.original && (
+      {
+        plan.original && (
           <p class="mt-1 text-xl font-medium text-gray-400 line-through md:text-2xl">
-            {plan.price.original}
+            {plan.original}
           </p>
         )
-      } -->
-    </div><ul class="grid mt-8 text-left gap-y-4">
+      }
+    </div>
+    <ul class="grid mt-8 text-left gap-y-4">
       {
         plan.features.map((item) => (
           <li class="flex items-start gap-3 text-gray-800">
-            <Tick class="w-6 h-6" />
+            {isChristmas ? (
+              <span class="text-xl">🎁</span>
+            ) : (
+              <Tick class="w-6 h-6" />
+            )}
             <span>{item}</span>
           </li>
         ))
       }
-    </ul><div class="flex mt-8">
+    </ul>
+    <div class="flex mt-8">
       <Link
         href={plan.button.link || "#"}
         block
-        style={plan.popular ? "primary" : "outline"}>
-        {plan.button.text || "Get Started"}
+        style={isChristmas ? "primary" : plan.popular ? "primary" : "outline"}
+        class:list={[
+          isChristmas && "bg-red-500 hover:bg-red-600 border-red-500",
+        ]}>
+        {isChristmas ? "🎄 " : ""}{plan.button.text || "Get Started"}
       </Link>
     </div>
+    {
+      isChristmas && (
+        <div class="absolute -bottom-3 left-0 right-0 flex justify-center gap-2">
+          <span class="text-2xl">❄️</span>
+          <span class="text-2xl">🎄</span>
+          <span class="text-2xl">❄️</span>
+        </div>
+      )
+    }
   </div>
 </div>

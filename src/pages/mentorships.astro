@@ -39,6 +39,26 @@ const pricing = [
       link: "/contact",
     },
   },
+  {
+    name: "Solo estudiantes de pregrado",
+    price: "$120",
+    original: "$200 (Anual)",
+    popular: false,
+    season: "christmas",
+    features: [
+      "Horario 1: Sábados y domingos 07h00 PM a 08h00 PM",
+      "Horario 2: Martes y jueves 07h00 AM a 06h00 AM",
+      "8 mentorías mensuales, 2 semanales en cualquier horario",
+      "Grupo menor a 10 personas",
+      "Apoyo en temas compartidos para refuerzo de conocimientos",
+      "Seguimiento de resultados y objetivos individuales",
+      "Es posible otro horario pero con un asistente adicional",
+    ],
+    button: {
+      text: "Regístrate ya",
+      link: "/register-mentorship-promo",
+    },
+  },
 ];
 ---
 
@@ -243,7 +263,7 @@ const pricing = [
     </Sectionhead>
 
     <div
-      class="flex flex-wrap justify-between items-center mx-auto max-w-screen-lg mt-12 space-x-4">
+      class="flex flex-wrap justify-center items-center mx-auto max-w-screen-lg mt-12 space-x-4">
       {pricing.map((item) => <PricingCard plan={item} />)}
     </div>
   </Container>
@@ -274,6 +294,70 @@ const pricing = [
     icon.classList.toggle("fa-chevron-down");
     icon.classList.toggle("fa-chevron-up");
   }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const registerBtn = document.querySelector(
+      'button[id="christmas-register"][data-season="christmas"]',
+    );
+    const modal = document.getElementById("registrationModal");
+    const closeBtn = document.getElementById("closeModal");
+    const form = document.getElementById("registrationForm");
+
+    if (registerBtn) {
+      registerBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (modal) {
+          modal.classList.remove("hidden");
+        }
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () {
+        modal.classList.add("hidden");
+      });
+    }
+
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = {
+          nombre: document.getElementById("nombre").value,
+          apellido: document.getElementById("apellido").value,
+          universidad: document.getElementById("universidad").value,
+          correo: document.getElementById("correo").value,
+          carrera: document.getElementById("carrera").value,
+          motivacion: document.getElementById("motivacion").value,
+        };
+
+        const message =
+          `¡Hola! Me interesa la mentoría navideña 🎄\n\n` +
+          `*Datos del registro:*\n` +
+          `Nombre: ${formData.nombre}\n` +
+          `Apellido: ${formData.apellido}\n` +
+          `Universidad: ${formData.universidad}\n` +
+          `Correo: ${formData.correo}\n` +
+          `Carrera: ${formData.carrera}\n\n` +
+          `*Motivación:*\n${formData.motivacion}`;
+
+        const whatsappUrl = `https://wa.me/593999817480?text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappUrl, "_blank");
+        modal.classList.add("hidden");
+        form.reset();
+      });
+    }
+
+    window.onclick = function (event) {
+      if (event.target === modal) {
+        modal.classList.add("hidden");
+      }
+    };
+
+    console.log("Register button found:", registerBtn);
+    console.log("Modal found:", modal);
+  });
 </script>
 
 <style>
@@ -374,6 +458,19 @@ const pricing = [
     text-align: center;
     font-size: 1.2em;
     margin-bottom: 20px;
+  }
+
+  .modal {
+    transition: opacity 0.25s ease;
+  }
+
+  .modal-content {
+    transform: scale(1);
+    transition: transform 0.25s ease;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>
 

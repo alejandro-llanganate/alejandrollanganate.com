@@ -1,0 +1,240 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+---
+
+<Layout title="Registro Mentoría - Alejandro Llanganate">
+  <Container>
+    <div class="pb-16">
+      <Sectionhead>
+        <Fragment slot="title">Registro para Mentoría Navideña</Fragment>
+        <Fragment slot="desc">
+          Completa el formulario para iniciar tu proceso de registro
+        </Fragment>
+      </Sectionhead>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mt-8 mb-16">
+        <!-- Columna izquierda: Formulario -->
+        <div>
+          <form id="registrationForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="nombre"
+                  class="block text-base font-semibold text-gray-800 mb-1">Nombre</label
+                >
+                <input
+                  type="text"
+                  id="nombre"
+                  required
+                  class="mt-1 block w-full px-4 py-3 rounded-md border-2 border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 bg-white/95 backdrop-blur-sm"
+                />
+              </div>
+              <div>
+                <label
+                  for="apellido"
+                  class="block text-sm font-medium text-gray-700">Apellido</label
+                >
+                <input
+                  type="text"
+                  id="apellido"
+                  required
+                  class="mt-1 block w-full px-4 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white/90 backdrop-blur-sm"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="universidad"
+                class="block text-sm font-medium text-gray-700">Universidad</label
+              >
+              <input
+                type="text"
+                id="universidad"
+                required
+                class="mt-1 block w-full px-4 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white/90 backdrop-blur-sm"
+              />
+            </div>
+
+            <div>
+              <label for="correo" class="block text-sm font-medium text-gray-700"
+                >Correo Electrónico</label
+              >
+              <input
+                type="email"
+                id="correo"
+                required
+                class="mt-1 block w-full px-4 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white/90 backdrop-blur-sm"
+              />
+            </div>
+
+            <div>
+              <label for="carrera" class="block text-sm font-medium text-gray-700"
+                >Carrera</label
+              >
+              <select
+                id="carrera"
+                required
+                class="mt-1 block w-full px-4 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white/90 backdrop-blur-sm">
+                <option value="">Selecciona tu carrera</option>
+                <option value="Ing. de Software">Ing. de Software</option>
+                <option value="Ing. de Computación">Ing. de Computación</option>
+                <option value="Ing. de Ciberseguridad"
+                  >Ing. de Ciberseguridad</option
+                >
+                <option value="Ing. de Ciencias de la Computación">
+                  Ing. de Ciencias de la Computación
+                </option>
+                <option value="Ing. de Sistemas">Ing. de Sistemas</option>
+                <option value="Otra Ingeniería">Otra Ingeniería</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="motivacion"
+                class="block text-sm font-medium text-gray-700"
+                >¿Por qué te interesa esta mentoría?</label
+              >
+              <textarea
+                id="motivacion"
+                rows="4"
+                required
+                class="mt-1 block w-full px-4 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white/90 backdrop-blur-sm"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- Columna derecha: Preview y botón -->
+        <div class="flex flex-col space-y-8">
+          <!-- Preview del mensaje -->
+          <div class="relative">
+            <div class="sticky top-8">
+              <div class="bg-gray-900 rounded-lg shadow-lg p-6 border border-gray-800">
+                <h3 class="text-lg font-semibold mb-4 text-white">Vista previa del mensaje</h3>
+                <div
+                  id="messagePreview"
+                  class="prose prose-invert prose-sm max-w-none whitespace-pre-wrap bg-gray-800 p-4 rounded-md text-gray-200">
+                  Completa el formulario para ver el mensaje...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón de envío centrado -->
+          <div class="flex justify-center">
+            <button
+              type="submit"
+              form="registrationForm"
+              class="w-full md:w-2/3 inline-flex justify-center rounded-md border-2 border-red-500 bg-gradient-to-b from-red-500 to-red-600 py-3 px-8 text-base font-semibold text-white shadow-lg hover:from-red-600 hover:to-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200">
+              🎄 Enviar Registro
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("registrationForm") as HTMLFormElement;
+    const preview = document.getElementById("messagePreview");
+    const formInputs = form.querySelectorAll("input, textarea, select");
+
+    function updatePreview() {
+      const nombre = (document.getElementById("nombre") as HTMLInputElement)
+        .value;
+      const apellido = (document.getElementById("apellido") as HTMLInputElement)
+        .value;
+      const universidad = (
+        document.getElementById("universidad") as HTMLInputElement
+      ).value;
+      const correo = (document.getElementById("correo") as HTMLInputElement)
+        .value;
+      const carrera = (document.getElementById("carrera") as HTMLSelectElement)
+        .value;
+      const motivacion = (
+        document.getElementById("motivacion") as HTMLTextAreaElement
+      ).value;
+
+      const message =
+        `¡Hola! Me interesa la mentoría navideña 🎄\n\n` +
+        `*Datos del registro:*\n` +
+        `Nombre: ${nombre}\n` +
+        `Apellido: ${apellido}\n` +
+        `Universidad: ${universidad}\n` +
+        `Correo: ${correo}\n` +
+        `Carrera: ${carrera}\n\n` +
+        `*Motivación:*\n${motivacion}`;
+
+      if (preview) {
+        preview.textContent = message;
+      }
+    }
+
+    formInputs.forEach((input) => {
+      input.addEventListener("input", updatePreview);
+    });
+
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = {
+          nombre: (document.getElementById("nombre") as HTMLInputElement).value,
+          apellido: (document.getElementById("apellido") as HTMLInputElement)
+            .value,
+          universidad: (
+            document.getElementById("universidad") as HTMLInputElement
+          ).value,
+          correo: (document.getElementById("correo") as HTMLInputElement).value,
+          carrera: (document.getElementById("carrera") as HTMLSelectElement)
+            .value,
+          motivacion: (
+            document.getElementById("motivacion") as HTMLTextAreaElement
+          ).value,
+        };
+
+        const message =
+          `¡Hola! Me interesa la mentoría navideña 🎄\n\n` +
+          `*Datos del registro:*\n` +
+          `Nombre: ${formData.nombre}\n` +
+          `Apellido: ${formData.apellido}\n` +
+          `Universidad: ${formData.universidad}\n` +
+          `Correo: ${formData.correo}\n` +
+          `Carrera: ${formData.carrera}\n\n` +
+          `*Motivación:*\n${formData.motivacion}`;
+
+        const whatsappUrl = `https://wa.me/593999817480?text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappUrl, "_blank");
+        form.reset();
+        if (preview) {
+          preview.textContent = "Completa el formulario para ver el mensaje...";
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  input,
+  textarea,
+  select {
+    @apply border-2 border-gray-300 focus:ring-red-500 focus:border-red-500 transition-colors duration-200 shadow-sm hover:border-gray-400;
+  }
+
+  label {
+    @apply text-base font-semibold text-gray-800 mb-1;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply px-4 py-3 bg-white/95;
+  }
+</style>
