@@ -1,0 +1,1086 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+// URLs del curso
+const courseUrl = {
+  simpleUrl: "#",
+  discountUrl: "#",
+};
+
+const courseData = {
+  title: "Obsidian: Domina la Gestión del Conocimiento",
+  subtitle:
+    "Aprende a crear un segundo cerebro digital y optimiza tu productividad personal con Obsidian",
+  description:
+    "Domina Obsidian desde cero y transforma tu manera de gestionar información y conocimiento.",
+  rating: 4.8,
+  totalRatings: 1250,
+  students: 6050,
+  lastUpdate: "Enero 2024",
+  language: "Español",
+  instructor: "Alejandro Llanganate",
+  price: 49.99,
+  discountPrice: 23.99,
+  features: [
+    "Acceso de por vida",
+    "15 horas de contenido en video",
+    "45 recursos descargables",
+    "Certificado de finalización",
+    "Acceso móvil y TV",
+  ],
+};
+---
+
+<Layout title={`Obsidian Course`}>
+  <Container>
+    <div class="course-page">
+      <div class="course-banner">
+        <div class="course-info">
+          <nav class="breadcrumbs">
+            <a href="/courses">Cursos</a> / <span>Obsidian</span>
+          </nav>
+          <h1 class="course-title">{courseData.title}</h1>
+          <p class="course-subtitle">{courseData.subtitle}</p>
+          <div class="course-stats">
+            <div class="rating-container">
+              <span class="rating">
+                {courseData.rating}
+                <span class="stars">★★★★★</span>
+                <span class="total-ratings"
+                  >({courseData.totalRatings} valoraciones)</span
+                >
+              </span>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-icon">👥</span>
+                <span>{courseData.students} estudiantes</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon">👨‍🏫</span>
+                <span>Creado por {courseData.instructor}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon">📅</span>
+                <span>Última actualización: {courseData.lastUpdate}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-icon">🌐</span>
+                <span>{courseData.language}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-card">
+        <div class="course-preview">
+          <img
+            src="https://i.ibb.co/z4M4twz/obsidian-course.jpg"
+            alt="Vista previa del curso de Obsidian"
+            class="course-thumbnail"
+          />
+          <button class="preview-overlay">
+            <span class="play-icon">▶️</span>
+            <span class="preview-text">Ver introducción</span>
+          </button>
+        </div>
+
+        <div class="pricing">
+          <div class="price-container">
+            <span class="price">${courseData.price} USD</span>
+          </div>
+        </div>
+        <a class="buy-now" href={courseUrl.simpleUrl}>
+          <span>Comprar Ahora</span>
+          <span class="arrow">→</span>
+        </a>
+        <button class="apply-coupon" id="openCouponModal">
+          Aplicar Cupón <span class="discount-badge">
+            {
+              Math.round(
+                (1 - courseData.discountPrice / courseData.price) * 100
+              )
+            }% dto.
+          </span>
+          <span class="current-price">${courseData.discountPrice} USD</span>
+        </button>
+        <div class="features-list">
+          <div class="content-hours">
+            <span class="feature-icon">⏱️</span>
+            <span>{courseData.features[1]}</span>
+          </div>
+          {
+            courseData.features.slice(0, 4).map((feature) => (
+              <div class="feature-item">
+                <span class="feature-icon">✓</span>
+                <span>{feature}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <!-- Contenido del Curso -->
+  <Container>
+    <div class="content-layout">
+      <!-- Columna principal (3/4 del ancho) -->
+      <div class="main-content">
+        <div class="learning-section">
+          <h2 class="section-title">Lo que aprenderás</h2>
+          <div class="learning-grid">
+            {
+              [
+                "Dominarás la gestión del conocimiento personal con Obsidian",
+                "Crearás un segundo cerebro digital efectivo y personalizado",
+                "Aprenderás técnicas avanzadas de vinculación de notas",
+                "Implementarás flujos de trabajo productivos",
+                "Dominarás los plugins más útiles de Obsidian",
+                "Desarrollarás un sistema de notas sostenible a largo plazo",
+              ].map((item) => (
+                <div class="learning-item">
+                  <span class="check-icon">✓</span>
+                  <p>{item}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Espacio reservado para la tarjeta (1/4 del ancho) -->
+      <div class="sidebar-space"></div>
+    </div>
+
+    <div class="course-content-section mb-16">
+      <h2 class="section-title">Contenido del curso</h2>
+      <div class="course-modules">
+        {
+          [
+            {
+              title: "Módulo 1: Introducción a Obsidian",
+              lessons: [
+                "Bienvenida al curso",
+                "¿Qué es Obsidian?",
+                "Instalación y configuración inicial",
+              ],
+              duration: "45 min",
+              lectureCount: 3,
+            },
+            {
+              title: "Módulo 2: Fundamentos de Markdown",
+              lessons: [
+                "Sintaxis básica",
+                "Formateo avanzado",
+                "Práctica guiada",
+              ],
+              duration: "1h 15min",
+              lectureCount: 4,
+            },
+            {
+              title: "Módulo 3: Sistema de enlaces y grafos",
+              lessons: [
+                "Enlaces internos",
+                "Enlaces externos",
+                "Visualización de grafos",
+              ],
+              duration: "2h",
+              lectureCount: 5,
+            },
+          ].map((module) => (
+            <details class="module-accordion">
+              <summary class="module-header">
+                <div class="module-title-section">
+                  <h3>{module.title}</h3>
+                  <div class="module-meta">
+                    <span>{module.lectureCount} clases</span>
+                    <span>•</span>
+                    <span>{module.duration}</span>
+                  </div>
+                </div>
+                <span class="accordion-icon">▼</span>
+              </summary>
+              <div class="module-content">
+                {module.lessons.map((lesson) => (
+                  <div class="lesson-item">
+                    <span class="lesson-icon">📝</span>
+                    <span>{lesson}</span>
+                  </div>
+                ))}
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Layout>
+<!-- Modal del cupón -->
+<div id="couponModal" class="modal hidden">
+  <div class="coupon-container">
+    <div class="coupon">
+      <div class="coupon-left">
+        <div class="discount-circle">
+          <span class="discount-amount">
+            {
+              Math.round(
+                (1 - courseData.discountPrice / courseData.price) * 100
+              )
+            }%
+          </span>
+          <span class="discount-text">OFF</span>
+        </div>
+      </div>
+
+      <div class="coupon-right">
+        <button class="close-modal" aria-label="Cerrar">×</button>
+        <div class="coupon-content">
+          <h2 class="coupon-title">¡CUPÓN ESPECIAL!</h2>
+          <div class="code-container">
+            <span class="code">OBSIDIAN2024</span>
+            <!-- <button class="copy-btn" title="Copiar código">
+              <span class="copy-icon">📋</span>
+              <span class="copy-text">Copiar</span>
+            </button> -->
+          </div>
+          <div class="savings">
+            <div class="price-tag">
+              <span class="original">${courseData.price}</span>
+              <span class="final">${courseData.discountPrice}</span>
+            </div>
+          </div>
+          <div class="coupon-footer">
+              <a
+               href={courseUrl.discountUrl}>
+            <button class="apply-btn">Aplicar Descuento</button>
+                </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const openModalBtn = document.getElementById("openCouponModal");
+  const modal = document.getElementById("couponModal");
+
+  if (modal) {
+    const closeBtn = modal.querySelector(".close-modal");
+    const applyBtn = modal.querySelector(".apply-btn");
+    const code = modal.querySelector(".code");
+
+    // Abrir modal con animación
+    openModalBtn?.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+      // Dar tiempo para la transición
+      setTimeout(() => {
+        modal.classList.add("show");
+      }, 10);
+    });
+
+    // Cerrar modal
+    const closeModal = () => {
+      modal.classList.remove("show");
+      // Esperar a que termine la animación antes de ocultar
+      setTimeout(() => {
+        modal.classList.add("hidden");
+      }, 300);
+    };
+
+    // Eventos de cierre
+    closeBtn?.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+
+    // Aplicar cupón
+    applyBtn?.addEventListener("click", () => {
+        //aqui la logica adicional o redirigir a la url con el cupon
+      closeModal();
+    });
+
+    // Prevenir que la página se desplace cuando el modal está abierto
+    modal.addEventListener("show", () => {
+      document.body.style.overflow = "hidden";
+    });
+
+    modal.addEventListener("hidden", () => {
+      document.body.style.overflow = "";
+    });
+  }
+</script>
+<style>
+  /* ==========================================
+       LAYOUT GENERAL
+    ========================================== */
+  .course-page {
+    position: relative;
+    min-height: 500px;
+  }
+
+  /* ==========================================
+       BANNER DEL CURSO
+    ========================================== */
+  .course-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url("/images/obsidian-banner.jpg");
+    color: white;
+    padding: 3rem 2rem;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+  }
+
+  .course-info {
+    max-width: 65%;
+  }
+
+  .course-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .course-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  /* Navegación y breadcrumbs */
+  .breadcrumbs {
+    color: #ccc;
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumbs a {
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* Estadísticas del curso */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .rating-container {
+    font-size: 1.2rem;
+  }
+
+  .stars {
+    color: #ffd700;
+    margin: 0 0.5rem;
+  }
+
+  /* ==========================================
+       TARJETA DE ACCIÓN (COMPRA)
+    ========================================== */
+  .action-card {
+    position: absolute;
+    right: 2rem;
+    top: 3rem;
+    width: 30%;
+    background: white;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    color: #333;
+  }
+
+  /* Precios y descuentos */
+  .price-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .current-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+  }
+
+  .original-price {
+    text-decoration: line-through;
+    color: #666;
+    font-size: 1.1rem;
+  }
+  .price {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .discount-badge {
+    background: #dcfce7;
+    color: #166534;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  /* Botones de acción */
+  .buy-now {
+    width: 100%;
+    padding: 1rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+  }
+
+  .apply-coupon {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    background: transparent;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #f8fafc;
+    }
+  }
+
+  /* Lista de características */
+  .features-list {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    color: #4b5563;
+  }
+
+  .feature-icon {
+    color: #2563eb;
+  }
+
+  /* ==========================================
+       SECCIÓN: LO QUE APRENDERÁS
+    ========================================== */
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #2563eb;
+    border-radius: 2px;
+  }
+
+  .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .learning-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .learning-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .check-icon {
+    color: #2563eb;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  /* ==========================================
+       SECCIÓN: CONTENIDO DEL CURSO
+    ========================================== */
+  .course-modules {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .module-accordion {
+    border-bottom: 1px solid #e2e8f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    background: white;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #f8fafc;
+    }
+  }
+
+  .module-title-section h3 {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+
+  .module-meta {
+    display: flex;
+    gap: 0.5rem;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  .accordion-icon {
+    color: #64748b;
+    transition: transform 0.3s ease;
+  }
+
+  details[open] .accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .module-content {
+    background: #f8fafc;
+    padding: 1rem 1.5rem;
+  }
+
+  .lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    color: #475569;
+  }
+
+  .lesson-icon {
+    color: #64748b;
+  }
+
+  /* ==========================================
+       MEDIA QUERIES
+    ========================================== */
+  @media (max-width: 1024px) {
+    .course-info {
+      max-width: 100%;
+    }
+
+    .action-card {
+      position: relative;
+      width: 100%;
+      right: 0;
+      top: 0;
+      margin-top: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .learning-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .module-header {
+      padding: 1rem;
+    }
+
+    .module-content {
+      padding: 1rem;
+    }
+
+    .course-header {
+      padding-bottom: 4rem;
+    }
+  }
+
+  /* ==========================================
+     IMAGEN DEL CURSO EN TARJETA
+  ========================================== */
+  .course-preview {
+    position: relative;
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem; /* Negativo para compensar el padding de action-card */
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+  }
+
+  .course-thumbnail {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+  }
+
+  .preview-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .play-icon {
+    font-size: 3rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+
+  .preview-text {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Layout principal */
+  .content-layout {
+    display: grid;
+    grid-template-columns: 70% 30%; /* 3/4 y 1/4 */
+    gap: 2rem;
+    position: relative;
+    margin-top: 4rem;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .sidebar-space {
+    /* Espacio reservado para la tarjeta flotante */
+    height: 1px; /* Mínimo espacio necesario */
+  }
+
+  /* Ajustes a los estilos existentes */
+  .learning-section {
+    padding-right: 1rem;
+  }
+
+  .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 1.5rem;
+  }
+
+  /* Media queries */
+  @media (max-width: 1024px) {
+    .content-layout {
+      grid-template-columns: 1fr; /* Una sola columna en tablets */
+      gap: 1rem;
+    }
+
+    .sidebar-space {
+      display: none; /* Ocultar espacio reservado */
+    }
+
+    .learning-section {
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .learning-grid {
+      grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+  }
+
+  /* ==========================================
+     MODAL DE CUPÓN - ESTRUCTURA PRINCIPAL
+  ========================================== */
+  /* Modal general - Overlay que cubre toda la pantalla */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+  }
+
+  /* Estado activo del modal */
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Contenedor principal del cupón */
+  .coupon-container {
+    padding: 5 rem;
+    max-width: 4 rem;
+    width: 80%;
+    transform: translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Animación de entrada del contenedor */
+  .modal.show .coupon-container {
+    transform: translateY(0);
+  }
+
+  /* ==========================================
+     DISEÑO DEL CUPÓN
+  ========================================== */
+  /* Tarjeta del cupón */
+  .coupon {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    display: flex;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px -15px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(0, 0, 0, 0.1);
+    animation: float 8s ease-in-out infinite;
+  }
+
+  /* Animación de flotación del cupón */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px);
+    }
+  }
+
+  /* ==========================================
+     SECCIÓN IZQUIERDA DEL CUPÓN
+  ========================================== */
+  /* Panel izquierdo con gradiente */
+  .coupon-left {
+    background: linear-gradient(135deg, #25c0eb 0%, #1d4ed8 100%);
+    padding: 1.5rem;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Efecto de sombreado radial */
+  .coupon-left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      transparent 25%,
+      rgba(0, 0, 0, 0.3)
+    );
+  }
+
+  /* Círculo del descuento */
+  .discount-circle {
+    background: white;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.15),
+      0 0 0 12px rgba(255, 255, 255, 0.15);
+    position: relative;
+    animation: pulse 2.5s infinite;
+  }
+
+  /* Animación de pulsación del círculo */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Texto del porcentaje de descuento */
+  .discount-amount {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+
+  /* Texto "OFF" debajo del porcentaje */
+  .discount-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ==========================================
+     SECCIÓN DERECHA DEL CUPÓN
+  ========================================== */
+  /* Panel derecho con contenido */
+  .coupon-right {
+    padding: 2.5rem;
+    flex: 1;
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  /* Botón de cerrar modal */
+  .close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+
+    &:hover {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.08);
+      transform: rotate(90deg);
+    }
+  }
+
+  /* ==========================================
+     CONTENIDO DEL CUPÓN
+  ========================================== */
+  /* Título del cupón */
+  .coupon-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  /* Contenedor del código del cupón */
+  .code-container {
+    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    padding: 1.25rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border: 2px dashed #2563eb;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Efecto de rayas animadas */
+  .code-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      transparent 48%,
+      #2563eb 49%,
+      #2563eb 51%,
+      transparent 52%
+    );
+    opacity: 0.15;
+    background-size: 12px 12px;
+    animation: moveStripes 20s linear infinite;
+  }
+
+  @keyframes moveStripes {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
+  }
+
+  .code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #2563eb;
+    flex: 1;
+    text-align: center;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+  }
+
+
+  .copy-icon {
+    font-size: 1.2rem;
+  }
+
+  .savings {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .price-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: #f3f4f6;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  .original {
+    color: #6b7280;
+    text-decoration: line-through;
+    font-size: 1.3rem;
+    opacity: 0.7;
+  }
+
+  .final {
+    color: #059669;
+    font-size: 1.8rem;
+    font-weight: 800;
+  }
+
+  .apply-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 1.25rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .coupon {
+      flex-direction: column;
+    }
+
+    .coupon::before,
+    .coupon::after {
+      display: none;
+    }
+
+    .coupon-left {
+      padding: 2rem;
+    }
+
+    .discount-circle {
+      width: 110px;
+      height: 110px;
+    }
+
+    .discount-amount {
+      font-size: 2.5rem;
+    }
+
+    .coupon-right {
+      padding: 2rem;
+    }
+
+    .code {
+      font-size: 1.25rem;
+    }
+  }
+</style>
