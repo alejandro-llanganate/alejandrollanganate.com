@@ -1,0 +1,509 @@
+<div class="whatsapp-widget">
+  <button id="chatButton" class="whatsapp-button" aria-label="Abrir chat">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon"
+      viewBox="0 0 24 24"
+      fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+      ></path>
+    </svg>
+  </button>
+
+  <div id="chatWindow" class="chat-card">
+    <div class="chat-header">
+      <p class="mb-0">Escríbenos</p>
+      <button class="close-chat" id="closeChat" aria-label="Cerrar chat">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2">
+          <path
+            d="M18 6L6 18M6 6l12 12"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      id="initialForm"
+      class="initial-form"
+      style="position: absolute;  left: 0; right: 0; bottom: 0; z-index: 1; background: white;">
+      <div class="welcome-message">
+        <p>👋 ¡Hola! Para comenzar, por favor ingresa tus datos:</p>
+      </div>
+      <form id="userDataForm" class="user-form">
+        <div class="form-group">
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            class="form-input"
+            placeholder="Tu nombre"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="tel"
+            id="userPhone"
+            name="userPhone"
+            class="form-input"
+            placeholder="Número de teléfono"
+            pattern="[0-9]{10}"
+            required
+          />
+          <small class="phone-hint">Formato: 10 dígitos</small>
+        </div>
+        <div class="form-group">
+          <textarea
+            id="userMessage"
+            name="userMessage"
+            class="form-input"
+            placeholder="Tu mensaje"
+            required></textarea>
+        </div>
+        <button type="submit" class="start-chat-btn">Enviar</button>
+      </form>
+    </div>
+
+    <div class="chat-messages"></div>
+
+    <div class="chat-input">
+      <div class="form-outline">
+        <textarea
+          class="message-input"
+          id="messageInput"
+          rows="3"
+          placeholder="Escribe tu mensaje aquí..."
+          aria-label="Campo de mensaje"></textarea>
+      </div>
+      <button class="send-button" aria-label="Enviar mensaje">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M22 2L11 13M22 2l-7 20-4-9-9-4L22 2z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+<style>
+  .whatsapp-widget {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+  }
+
+  .whatsapp-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+  }
+
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    color: white;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.9);
+    }
+    70% {
+      box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .whatsapp-widget {
+      bottom: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .whatsapp-button {
+      width: 50px;
+      height: 50px;
+    }
+
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .chat-card {
+    width: 350px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Asegura que todo dentro de .chat-card esté contenido visualmente */
+  }
+
+  @media (max-width: 480px) {
+    .chat-card {
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+      bottom: 0 !important;
+      right: 0 !important;
+      left: 0;
+      border-radius: 15px 15px 0 0;
+    }
+  }
+
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #57ed39;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-bottom: 0; /* Elimina cualquier margen entre el encabezado y los mensajes */
+  }
+
+  .chat-messages {
+    padding: 20px;
+    height: 250px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    margin-top: 0; /* Asegura que no haya espacio extra en la parte superior */
+  }
+
+  @media (max-height: 600px) {
+    .chat-messages {
+      height: 300px;
+    }
+  }
+
+  .message-row {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .message-row.sent {
+    justify-content: flex-end;
+  }
+
+  .message-row.received {
+    justify-content: flex-start;
+  }
+
+  .message {
+    max-width: 75%;
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .message.sent {
+    background-color: #39c0ed;
+    color: white;
+    margin-left: 20px;
+  }
+
+  .message.received {
+    background-color: rgba(57, 192, 237, 0.2);
+    margin-right: 20px;
+  }
+
+  .chat-input {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    background: white;
+  }
+
+  .form-outline {
+    flex: 1;
+    width: 100%;
+    display: flex;
+  }
+
+  .message-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    resize: none;
+    background-color: #f8f9fa;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 45px;
+    max-height: 120px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .message-input:focus {
+    border-color: #39c0ed;
+  }
+
+  .send-button {
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    background-color: #39c0ed;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+
+  .send-button:hover {
+    background-color: #2fb3e4;
+    transform: scale(1.05);
+  }
+
+  .send-button svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2px;
+  }
+
+  /* Estilos para el botón flotante y contenedor */
+  .whatsapp-widget {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+  }
+
+  @media (max-width: 480px) {
+    .whatsapp-widget {
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+
+  /* Ajustes para la ventana del chat */
+  .chat-card {
+    position: fixed;
+    bottom: 90px;
+    right: 2rem;
+    display: none;
+    flex-direction: column;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+  .close-chat {
+    background: transparent;
+    border: none;
+    color: rgb(254, 254, 254);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+
+  .close-chat:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(255, 255, 255);
+  }
+
+  /* Estilos para el formulario inicial */
+  .initial-form {
+    padding: 20px;
+    background: #f8f9fa;
+    flex: 1;
+  }
+
+  .welcome-message {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .welcome-message p {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form-input {
+    padding: 12px 15px;
+    border: 2px solid #e2e2e2;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .form-input:focus {
+    border-color: #5ded39;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(57, 192, 237, 0.1);
+  }
+
+  .form-input.valid {
+    border-color: #28a745;
+  }
+
+  .form-input.invalid {
+    border-color: #dc3545;
+  }
+
+  .phone-hint {
+    font-size: 12px;
+    color: #666;
+    margin-left: 5px;
+  }
+
+  .start-chat-btn {
+    background: #25d366;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .start-chat-btn:hover {
+    background: #28a745;
+    transform: translateY(-1px);
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Referencias a elementos del DOM
+    const userDataForm = document.getElementById(
+      "userDataForm"
+    ) as HTMLFormElement;
+    const chatWindow = document.getElementById("chatWindow");
+    const chatButton = document.getElementById("chatButton");
+    const closeChat = document.getElementById("closeChat");
+    const userPhoneElement = document.getElementById(
+      "userPhone"
+    ) as HTMLInputElement;
+
+    // Función para cerrar el widget de chat
+    function closeChatWidget() {
+      if (chatWindow) chatWindow.style.display = "none";
+      if (chatButton) chatButton.style.display = "flex";
+    }
+
+    // Función para validar el número de teléfono
+    function validatePhone(phone) {
+      return /^\d{10}$/.test(phone);
+    }
+    // Evento de validación en tiempo real para el número de teléfono
+    userPhoneElement.addEventListener("input", function () {
+      if (validatePhone(userPhoneElement.value)) {
+        userPhoneElement.classList.add("valid"); // Añade una clase para indicar que el valor es válido
+        userPhoneElement.classList.remove("invalid"); // Elimina la clase de invalid si estaba previamente
+      } else {
+        userPhoneElement.classList.add("invalid"); // Añade una clase para mostrar visualmente un error
+        userPhoneElement.classList.remove("valid"); // Elimina la clase de válido si estaba previamente
+      }
+    });
+
+    // Evento para manejar el cierre del chat
+    if (closeChat) {
+      closeChat.addEventListener("click", closeChatWidget);
+    }
+
+    // Evento para manejar la apertura del chat
+    if (chatButton && chatWindow) {
+      chatButton.addEventListener("click", function () {
+        chatWindow.style.display = "block";
+        chatButton.style.display = "none";
+      });
+    }
+
+    // Evento para manejar el envío del formulario
+    if (userDataForm) {
+      userDataForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Acceso a los elementos del formulario usando TypeScript casting
+        const userNameElement = document.getElementById(
+          "userName"
+        ) as HTMLInputElement;
+        const userMessageElement = document.getElementById(
+          "userMessage"
+        ) as HTMLInputElement;
+
+        if (!userNameElement || !userPhoneElement || !userMessageElement) {
+          alert("Por favor, complete todos los campos.");
+          return;
+        }
+        const userName = userNameElement.value;
+        const userPhone = userPhoneElement.value;
+        const userMessage = userMessageElement.value;
+        // Construcción del mensaje para WhatsApp
+        if (userName && userPhone && userMessage) {
+          const whatsappMessage = `Hola, mi nombre es ${userName}. Mi número de teléfono es ${userPhone}. ${userMessage}`;
+          const whatsappUrl = `https://wa.me/593987077332?text=${encodeURIComponent(whatsappMessage)}`;
+
+          // Abrir WhatsApp
+          window.open(whatsappUrl, "_blank");
+
+          // Resetear formulario
+          userDataForm.reset();
+
+          // Cerrar el widget
+          closeChatWidget();
+        }
+      });
+    }
+  });
+</script>
