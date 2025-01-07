@@ -133,12 +133,10 @@ const courseData = {
           <div class="learning-grid">
             {
               [
-                "Dominarás la gestión del conocimiento personal con Obsidian",
-                "Crearás un segundo cerebro digital efectivo y personalizado",
-                "Aprenderás técnicas avanzadas de vinculación de notas",
-                "Implementarás flujos de trabajo productivos",
-                "Dominarás los plugins más útiles de Obsidian",
-                "Desarrollarás un sistema de notas sostenible a largo plazo",
+                "Obtener un conocimiento elemental de Obsidian para la gestión de conocimientos, toma de notas y organización de las mismas.",
+                "Optimizar el flujo de trabajo con Obsidian, ahorrando tiempo y mejorando tus apuntes.",
+                "Aplicar buenas prácticas para tomar notas y tener un mejor aprendizaje.",
+                "Aprender los complementos de la comunidad más importantes para el estudio con Obsidian."
               ].map((item) => (
                 <div class="learning-item">
                   <span class="check-icon">✓</span>
@@ -160,35 +158,106 @@ const courseData = {
         {
           [
             {
-              title: "Módulo 1: Introducción a Obsidian",
+              title: "Sección 1: Introducción a la toma de apuntes inteligentes y Obsidian",
               lessons: [
-                "Bienvenida al curso",
-                "¿Qué es Obsidian?",
-                "Instalación y configuración inicial",
+                "Introducción al módulo - Note-taking - Tomar apuntes",
+                "Mitos y verdades de tomar apuntes",
+                "Notas de Cornell",
+                "Idea principal e idea secundaria",
+                "Ejemplo de una nota Cornell",
+                "Zettelkasten",
+                "Listos para Obsidian"
               ],
-              duration: "45 min",
-              lectureCount: 3,
+              duration: "11 min",
+              lectureCount: 7
             },
             {
-              title: "Módulo 2: Fundamentos de Markdown",
+              title: "Sección 2: Instalación de Obsidian",
               lessons: [
-                "Sintaxis básica",
-                "Formateo avanzado",
-                "Práctica guiada",
+                "Instalación de Obsidian en Mac",
+                "Instalación de Obsidian en Windows",
+                "Instalación de Obsidian en Linux (Ubuntu)"
               ],
-              duration: "1h 15min",
-              lectureCount: 4,
+              duration: "3 min",
+              lectureCount: 3
             },
             {
-              title: "Módulo 3: Sistema de enlaces y grafos",
+              title: "Sección 3: Sintaxis básica",
               lessons: [
+                "Creación de nuestro primer vault",
+                "Interfaz de Obsidian",
+                "Cambiar la apariencia de nuestro editor",
                 "Enlaces internos",
-                "Enlaces externos",
-                "Visualización de grafos",
+                "Crear un alias",
+                "Múltiples alias",
+                "Enlaces a encabezados",
+                "Imágenes",
+                "Instalación de Awesome Image",
+                "Snippet para centrar imágenes",
+                "Insertar tablas",
+                "Plugin Advanced Tables",
+                "Callouts",
+                "Crear un template",
+                "Backlinks",
+                "Insertar un recurso de YouTube o Twitter"
               ],
-              duration: "2h",
-              lectureCount: 5,
+              duration: "1 hr 10 min",
+              lectureCount: 15
             },
+            {
+              title: "Sección 4: Manejo de archivos",
+              lessons: [
+                "Abrir un archivo PDF con el visualizador de Obsidian",
+                "Incrustar un PDF en una nota",
+                "Consejos para subrayar correctamente",
+                "Crear anotaciones en PDFs",
+                "Spreadsheets"
+              ],
+              duration: "25 min",
+              lectureCount: 5
+            },
+            {
+              title: "Sección 5: Mapas conceptuales",
+              lessons: [
+                "Importancia de los mapas conceptuales",
+                "Enhancing mindmap",
+                "Excalidraw",
+                "Introducción a Canvas",
+                "Ejemplo de un Canvas con notas"
+              ],
+              duration: "20 min",
+              lectureCount: 5
+            },
+            {
+              title: "Sección 6: Vista de grafo",
+              lessons: [
+                "Introducción a la vista de grafo",
+                "Configuración básica de la vista de grafo",
+                "Profundizando en la vista de grafo",
+                "Personalización"
+              ],
+              duration: "15 min",
+              lectureCount: 4
+            },
+            {
+              title: "Sección 7: Obsidian Sync y Obsidian Publish",
+              lessons: [
+                "Opciones de pago de Obsidian",
+                "Obsidian Sync",
+                "Obsidian Publish"
+              ],
+              duration: "10 min",
+              lectureCount: 3
+            },
+            {
+              title: "Sección 8: Bonus: Obsidian para developers",
+              lessons: [
+                "Insertar código en nuestras notas",
+                "Diagramas UML con Mermaid"
+              ],
+              duration: "8 min",
+              lectureCount: 2
+            }
           ].map((module) => (
             <details class="module-accordion">
               <summary class="module-header">
@@ -551,7 +620,7 @@ const courseData = {
   /* ==========================================
        SECCIÓN: CONTENIDO DEL CURSO
     ========================================== */
-  .course-modules {
+    .course-modules {
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     overflow: hidden;
@@ -559,7 +628,6 @@ const courseData = {
 
   .module-accordion {
     border-bottom: 1px solid #e2e8f0;
-
     &:last-child {
       border-bottom: none;
     }
@@ -583,6 +651,7 @@ const courseData = {
     font-weight: 600;
     color: #1e293b;
     margin-bottom: 0.5rem;
+    align-items: start;
   }
 
   .module-meta {
