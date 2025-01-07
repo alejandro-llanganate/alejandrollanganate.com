@@ -1,0 +1,109 @@
+---
+const { title, description, descriptionLarga, imageUrl, link, targetDate } =
+  Astro.props;
+const isoDate = targetDate ? targetDate.toISOString() : null;
+const isActive = isoDate && new Date(isoDate) > new Date();
+---
+
+<!-- Agregamos un div contenedor con padding -->
+<div class="p-2">
+  <div
+    class={"card bg-white shadow-lg rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl relative" +
+      (isActive ? " opacity-50 cursor-not-allowed" : "")}
+    data-active={isActive}>
+    <div class="card-image relative">
+      <img
+        src={imageUrl}
+        alt={`Imagen del curso ${title}`}
+        class="w-full h-48 object-cover"
+      />
+      {
+        isoDate && (
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <p
+              class="countdown text-white text-xl font-bold"
+              data-countdown-target={isoDate}>
+              Cargando...
+            </p>
+          </div>
+        )
+      }
+    </div>
+    <div class="card-content p-4">
+      <h3 class="text-xl font-semibold">{title}</h3>
+      <p class="description-corta block transition-opacity duration-300">
+        {description}
+      </p>
+      <p class="description-larga hidden transition-opacity duration-300">
+        {descriptionLarga}
+      </p>
+      {
+        isActive ? (
+          <span class="text-gray-500">Proximamente..</span>
+        ) : (
+          <a href={link} class="text-blue-500 hover:text-blue-700">
+            Ir al curso
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <style>
+    .card:hover .description-corta {
+      display: none;
+    }
+
+    .card:hover .description-larga {
+      display: block;
+    }
+  </style>
+
+  <script define:vars={{ isoDate, link }}>
+    if (isoDate) {
+      const countdowns = document.querySelectorAll("[data-countdown-target]");
+      countdowns.forEach((countdown) => {
+        const endDate = new Date(
+          countdown.getAttribute("data-countdown-target")
+        );
+        const card = countdown.closest(".card");
+
+        function updateCountdown() {
+          const now = new Date();
+          const diff = endDate - now;
+
+          if (diff <= 0) {
+            countdown.textContent = "¡Es el momento!";
+            countdown.parentElement.style.display = "none";
+            if (card) {
+              card.classList.remove("opacity-50", "cursor-not-allowed");
+              const spanElement = card.querySelector("span.text-gray-500");
+              if (spanElement) {
+                spanElement.replaceWith(
+                  Object.assign(document.createElement("a"), {
+                    href: link,
+                    className: "text-blue-500 hover:text-blue-700",
+                    textContent: "Ir al curso",
+                  })
+                );
+              }
+            }
+            return;
+          }
+
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      });
+    }
+  </script>
+</div>

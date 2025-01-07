@@ -1,0 +1,39 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import CourseCard from "@components/courseCard.astro";
+
+// Datos de los cursos, solo el de Obsidian tiene fecha objetivo
+const courses = [
+  {
+    title: "Curso de Obsidian",
+    description:
+      "Aprende a dominar Obsidian, una herramienta innovadora para gestionar conocimiento.",
+    descriptionLarga:
+      "Domina Obsidian desde cero: aprenderás gestión de conocimiento, creación de notas efectivas, plugins esenciales, automatización de flujos de trabajo, y técnicas avanzadas de organización. Incluye ejercicios prácticos y proyectos reales.",
+    imageUrl: "https://i.ibb.co/z4M4twz/obsidian-course.jpg",
+    link: "courses/obsidian-course",
+    targetDate: new Date("2024-12-26T10:08:00"),
+  }
+];
+---
+
+<Layout title="Cursos en Oferta">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Nuestros Cursos</Fragment>
+      <Fragment slot="desc">
+        <p>
+          Explora nuestra variedad de cursos diseñados para tu crecimiento
+          profesional.
+        </p>
+      </Fragment>
+    </Sectionhead>
+    <div class="mt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {courses.map((course) => <CourseCard {...course} />)}
+        </div>
+    </div>
+  </Container></Layout
+>

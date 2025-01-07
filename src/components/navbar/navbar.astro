@@ -4,7 +4,12 @@ import Link from "@components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
-const menuitems = [
+const menuitems: {
+  title: string;
+  path: string;
+  children?: { title: string; path: string }[];
+  badge?: boolean;
+}[] = [
   {
     title: "Sobre mí",
     path: "/about",
@@ -15,7 +20,7 @@ const menuitems = [
     children: [
       { title: "Mentorías", path: "/mentorships" },
       { title: "Alumnis FIS", path: "/alumnis-fis" },
-      { title: "Curso de Obsidian", path: "/obsidian-courses" },
+      { title: "Cursos", path: "/courses" },
 
     ],
   },
